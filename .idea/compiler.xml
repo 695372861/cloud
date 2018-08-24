@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="config-client" />
+        <module name="config-server" />
+        <module name="eureka-server" />
+        <module name="eureka-server2" />
+        <module name="hi2" />
+        <module name="service-feign" />
+        <module name="service-hi" />
+        <module name="service-hi2" />
+        <module name="service-ribbon" />
+        <module name="service-zuul" />
+        <module name="zipkin-hi" />
+        <module name="zipkin-miya" />
+        <module name="zipkin-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="config-client" target="1.8" />
+      <module name="config-server" target="1.8" />
+      <module name="eureka-server" target="1.8" />
+      <module name="eureka-server2" target="1.8" />
+      <module name="eureka2" target="1.8" />
+      <module name="hi2" target="1.8" />
+      <module name="service-feign" target="1.8" />
+      <module name="service-hi" target="1.8" />
+      <module name="service-hi2" target="1.8" />
+      <module name="service-ribbon" target="1.8" />
+      <module name="service-zuul" target="1.8" />
+      <module name="zipkin-hi" target="1.8" />
+      <module name="zipkin-miya" target="1.8" />
+      <module name="zipkin-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
