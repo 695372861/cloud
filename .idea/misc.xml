@@ -17,6 +17,7 @@
         <option value="$PROJECT_DIR$/zipkin-service/pom.xml" />
         <option value="$PROJECT_DIR$/hi2/pom.xml" />
         <option value="$PROJECT_DIR$/service-hi2/pom.xml" />
+        <option value="$PROJECT_DIR$/service-turbine/pom.xml" />
       </list>
     </option>
   </component>
