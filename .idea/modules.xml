@@ -14,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/service-ribbon/service-ribbon.iml" filepath="$PROJECT_DIR$/service-ribbon/service-ribbon.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-turbine/service-turbine.iml" filepath="$PROJECT_DIR$/service-turbine/service-turbine.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-zuul/service-zuul.iml" filepath="$PROJECT_DIR$/service-zuul/service-zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/turbine2/turbine2.iml" filepath="$PROJECT_DIR$/turbine2/turbine2.iml" />
       <module fileurl="file://$PROJECT_DIR$/zipkin-hi/zipkin-hi.iml" filepath="$PROJECT_DIR$/zipkin-hi/zipkin-hi.iml" />
       <module fileurl="file://$PROJECT_DIR$/zipkin-miya/zipkin-miya.iml" filepath="$PROJECT_DIR$/zipkin-miya/zipkin-miya.iml" />
       <module fileurl="file://$PROJECT_DIR$/zipkin-service/zipkin-service.iml" filepath="$PROJECT_DIR$/zipkin-service/zipkin-service.iml" />

@@ -16,8 +16,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
       cors:
-        allowed-origins: *
-        allowed-methods: *
+        allowed-origins: "*"
+        allowed-methods: "*"
 #hystrix.stream
