@@ -19,6 +19,7 @@
         <option value="$PROJECT_DIR$/service-hi2/pom.xml" />
         <option value="$PROJECT_DIR$/service-turbine/pom.xml" />
         <option value="$PROJECT_DIR$/turbine2/pom.xml" />
+        <option value="$PROJECT_DIR$/redisuse/pom.xml" />
       </list>
     </option>
   </component>

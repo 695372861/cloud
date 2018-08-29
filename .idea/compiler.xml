@@ -11,6 +11,7 @@
         <module name="eureka-server" />
         <module name="eureka-server2" />
         <module name="hi2" />
+        <module name="redisuse" />
         <module name="service-feign" />
         <module name="service-hi" />
         <module name="service-hi2" />
@@ -30,6 +31,7 @@
       <module name="eureka-server2" target="1.8" />
       <module name="eureka2" target="1.8" />
       <module name="hi2" target="1.8" />
+      <module name="redisuse" target="1.8" />
       <module name="service-feign" target="1.8" />
       <module name="service-hi" target="1.8" />
       <module name="service-hi2" target="1.8" />
