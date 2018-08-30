@@ -1,15 +1,12 @@
-package com.myredis.redisuse;
-
+package com.mywebsocket.testsocket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
-public class RedisuseApplication {
+public class TestsocketApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RedisuseApplication.class, args);
+		SpringApplication.run(TestsocketApplication.class, args);
 	}
-
 }

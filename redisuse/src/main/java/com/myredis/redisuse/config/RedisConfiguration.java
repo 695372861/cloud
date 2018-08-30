@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.*;
@@ -58,12 +59,12 @@ public class RedisConfiguration extends CachingConfigurerSupport {
         // 这里其实就是new了一个KeyGenerator对象，只是这是lambda表达式的写法，我感觉很好用，大家感兴趣可以去了解下
         return (target, method, params) -> {
             StringBuilder sb = new StringBuilder();
-            sb.append(target.getClass().getName());
-            sb.append(":");
+//            sb.append(target.getClass().getName());
+//            sb.append(":");
             sb.append(method.getName());
-            for (Object obj : params) {
-                sb.append(":" + String.valueOf(obj));
-            }
+//            for (Object obj : params) {
+//                sb.append(":" + String.valueOf(obj));
+//            }
             String rsToUse = String.valueOf(sb);
             lg.info("自动生成Redis Key -> [{}]", rsToUse);
             return rsToUse;
@@ -164,6 +165,9 @@ public class RedisConfiguration extends CachingConfigurerSupport {
         JedisConnectionFactory jedisConnectionFactory() {
             lg.info("Create JedisConnectionFactory successful");
             JedisConnectionFactory factory = new JedisConnectionFactory();
+//            RedisStandaloneConfiguration redisStandaloneConfiguration=new RedisStandaloneConfiguration();
+//            redisStandaloneConfiguration.setHostName(host);
+//            redisStandaloneConfiguration.setPort(port);
             factory.setHostName(host);
             factory.setPort(port);
             factory.setTimeout(timeout);

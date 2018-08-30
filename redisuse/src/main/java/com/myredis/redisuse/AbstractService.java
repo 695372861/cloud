@@ -16,6 +16,7 @@ public abstract class AbstractService {
         super();
     }
 
+    //进行数据的初始化，在服务启动的时候执行
     @PostConstruct
     public void init() {
         // 1
