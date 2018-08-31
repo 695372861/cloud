@@ -31,8 +31,9 @@
     }
 </style>
 <body>
-<div>
-    <div style="float:left;width:40%">
+<div style="height: 500px">
+    <form id="from1">
+    <div style="float:left;width:30%">
         <p>请选择你是谁：</p>
         <select id="selectName">
             <option value="1">请选择</option>
@@ -55,7 +56,7 @@
     </div>
 
 
-    <div style="float:right; width:40%">
+    <div style="float:left; width:30%">
         <p>请选择你要发给谁：</p>
         <select id="selectName2" onchange="sendAloneUser();">
             <option value="1">请选择</option>
@@ -75,8 +76,21 @@
                 <input type="button" name="sendMessage" id="sendMessage1" class="sendMessage" onclick="sendAloneMessage()" value="发送">
             </section>
         </div>
+
+
     </div>
+
+     <div style="float: left; width: 20%" >
+
+        <div id="wai">
+            <div id="nei" style="background-color: darkgreen; width: 0.5px; height: 20px;"></div>
+        </div>
+        <span id="precent"></span><br/>
+        <input type="file" name="pic" id="pic" onchange="upfile2();"/>
+     </div>
+    </form>
 </div>
+
 <!-- 独立JS -->
 <script type="text/javascript" src="../static/js/jquery.js" charset="utf-8"></script>
 <!--<script type="text/javascript" src="../static/js/webSocket.js" charset="utf-8"></script>-->
@@ -191,6 +205,68 @@
         response.append("<p><span>"+userName+":</span><span>"+chatValue.val()+"</span></p>");
         chatValue.val("");
     }
+    function upfile(){
+        var pic=$("#pic")[0].files[0];
+        var fd=new FormData();
+        var xhr=new XMLHttpRequest();
+        xhr.open('post','/upfile',true);
+        xhr.onreadystatechange=function (){
+            if(this.readyState==4){
+                document.getElementById('precent').innerHTML=this.responseText;
+            }
+        }
+        xhr.upload.onprogress=function (ev){
+            //console.log(ev);控制台打印progress { target: XMLHttpRequestUpload, isTrusted: true, lengthComputable: true,<br> //loaded: 15020, total: 15020, eventPhase: 0, bubbles: false, cancelable: false, defaultPrevented: false, <br>//timeStamp: 1445144855459000, originalTarget: XMLHttpRequestUpload }
+            if(ev.lengthComputable){
+                var precent=100 * ev.loaded/ev.total;
+                console.log(precent);
+                document.getElementById('nei').style.width=precent+'%';
+                document.getElementById('precent').innerHTML=Math.floor(precent)+'%';
+            }
+        }
+        fd.append('file',pic);
+        fd.append("userName","name1");
+        fd.append("password",'123456');
+
+        xhr.send(fd);
+
+    }
+    //upfile2和upfile都可以实现
+    function upfile2() {
+        var pic=$("#pic")[0].files[0];
+        var fd=new FormData();
+        fd.append("file",pic);
+        fd.append("userName","name2");
+        fd.append("password","123456");
+        $.ajax({
+           type:"post",
+            url:"/upfile",
+            async:true,//这里要设置异步上传，才能成功调用myXhr.upload.addEventListener('progress',function(e){}),progress的回掉函数
+            processData:false,
+            contentType:false,
+            data:fd,
+            dataType:"json",
+            success:function (data) {
+                console.log(data);
+            },
+            xhr:function () {
+                myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){ // check if upload property exists
+                    myXhr.upload.addEventListener('progress',function(e){
+                        if(e.lengthComputable){
+                            var precent=100 * e.loaded/e.total;
+                            console.log(precent);
+                            document.getElementById('nei').style.width=precent+'%';
+                            document.getElementById('precent').innerHTML=Math.floor(precent)+'%';
+                        }
+                    }, false); // for handling the progress of the upload
+                }
+                return myXhr;
+            }
+        });
+    }
+
+
 </script>
 </body>
 </html>
