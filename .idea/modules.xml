@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/eureka-server2/eureka-server2.iml" filepath="$PROJECT_DIR$/eureka-server2/eureka-server2.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka2.iml" filepath="$PROJECT_DIR$/eureka2.iml" />
       <module fileurl="file://$PROJECT_DIR$/hi2/hi2.iml" filepath="$PROJECT_DIR$/hi2/hi2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lsxatomikos/lsxatomikos.iml" filepath="$PROJECT_DIR$/lsxatomikos/lsxatomikos.iml" />
       <module fileurl="file://$PROJECT_DIR$/redisuse/redisuse.iml" filepath="$PROJECT_DIR$/redisuse/redisuse.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-feign/service-feign.iml" filepath="$PROJECT_DIR$/service-feign/service-feign.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-hi/service-hi.iml" filepath="$PROJECT_DIR$/service-hi/service-hi.iml" />
