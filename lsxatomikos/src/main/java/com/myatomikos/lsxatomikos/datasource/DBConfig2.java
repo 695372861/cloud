@@ -11,13 +11,25 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import java.sql.SQLException;
 
 @ConfigurationProperties(prefix = "mysql.datasource.test2")
 @Configuration
 // basePackages 最好分开配置 如果放在同一个文件夹可能会报错
-@MapperScan(basePackages = "cn.mywork.user2", sqlSessionTemplateRef = "user2SqlSessionTemplate")
-
+@MapperScan(basePackages = "com.myatomikos.lsxatomikos.user2.dao", sqlSessionTemplateRef = "user2SqlSessionTemplate")
+//@EnableTransactionManagement
+//@EnableJpaRepositories(
+//        entityManagerFactoryRef="entityManagerFactorySecondary",
+//        transactionManagerRef="transactionManagerSecondary",
+//        basePackages= { "com.myatomikos.lsxatomikos.user2.dao" }) //设置Repository所在位置
+//@EnableJpaRepositories(
+//        basePackages= { "com.myatomikos.lsxatomikos.user2.dao" }) //设置Repository所在位置
 public class DBConfig2 {
     private String url;
     private String username;
@@ -32,7 +44,7 @@ public class DBConfig2 {
     private String testQuery;
 
 
-
+    @Primary
     @Bean(name ="user2DataSource")
     public DataSource user1DataSource()throws SQLException {
         MysqlXADataSource mysqlXADataSource=new MysqlXADataSource();
@@ -58,15 +70,23 @@ public class DBConfig2 {
 
         return   xaDataSource;
     }
-
+    @Primary
     @Bean (name="user2SqlSessionFactory")
     public SqlSessionFactory user1SqlSessionTemplate(@Qualifier("user2DataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        return bean.getObject();
+        //添加XML目录
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        try {
+            bean.setMapperLocations(resolver.getResources("classpath*:mapper/*.xml"));
+            return bean.getObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
-
-    @Bean(name = "user1Sq2SessionTemplate")
+    @Primary
+    @Bean(name = "user2SqlSessionTemplate")
     public SqlSessionTemplate testSqlSessionTemplate(
             @Qualifier("user2SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
@@ -78,7 +98,7 @@ public class DBConfig2 {
 
     @Override
     public String toString() {
-        return "DBConfig1{" +
+        return "DBConfig2{" +
                 "url='" + url + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
@@ -181,3 +201,4 @@ public class DBConfig2 {
         this.testQuery = testQuery;
     }
 }
+

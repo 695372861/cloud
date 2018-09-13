@@ -11,9 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.myatomikos.lsxatomikos","com.myatomikos.lsxatomikos.user1.service","com.myatomikos.lsxatomikos.user2.services"})
-@EnableAutoConfiguration
-@EnableJpaRepositories(basePackages ={"com.myatomikos.lsxatomikos.user1.dao","com.myatomikos.lsxatomikos.user2.dao"})
+//@ComponentScan(basePackages = {"com.myatomikos.lsxatomikos","com.myatomikos.lsxatomikos.user1.service","com.myatomikos.lsxatomikos.user2.services"})
 @EntityScan("com.myatomikos.lsxatomikos.entity")
 @EnableConfigurationProperties(value = {DBConfig1.class, DBConfig2.class })
 public class LsxatomikosApplication {

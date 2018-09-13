@@ -12,12 +12,23 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.sql.SQLException;
 
 @ConfigurationProperties(prefix = "mysql.datasource.test1")
 @Configuration
-@MapperScan(basePackages = "com.myatomikos.lsxatomikos.user1",sqlSessionTemplateRef = "user1SqlSessionTemplate")
+@MapperScan(basePackages = "com.myatomikos.lsxatomikos.user1.dao",sqlSessionTemplateRef = "user1SqlSessionTemplate")
+//@EnableTransactionManagement
+//@EnableJpaRepositories(
+//        entityManagerFactoryRef="entityManagerFactorySecondary",
+//        transactionManagerRef="transactionManagerSecondary",
+//        basePackages= { "com.myatomikos.lsxatomikos.user1.dao" }) //设置Repository所在位置
+//@EnableJpaRepositories(
+//        basePackages= { "com.myatomikos.lsxatomikos.user1.dao" }) //设置Repository所在位置
 public class DBConfig1 {
     private String url;
     private String username;
@@ -32,7 +43,7 @@ public class DBConfig1 {
     private String testQuery;
 
 
-    @Primary
+//    @Primary
     @Bean(name ="user1DataSource")
     public DataSource user1DataSource()throws SQLException {
         MysqlXADataSource mysqlXADataSource=new MysqlXADataSource();
@@ -59,14 +70,22 @@ public class DBConfig1 {
         return   xaDataSource;
     }
 
-    @Primary
+//    @Primary
     @Bean (name="user1SqlSessionFactory")
     public SqlSessionFactory user1SqlSessionTemplate(@Qualifier("user1DataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        return bean.getObject();
+        //添加XML目录
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        try {
+            bean.setMapperLocations(resolver.getResources("classpath*:mapper/*.xml"));
+            return bean.getObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
-    @Primary
+//    @Primary
     @Bean(name = "user1SqlSessionTemplate")
     public SqlSessionTemplate testSqlSessionTemplate(
             @Qualifier("user1SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
