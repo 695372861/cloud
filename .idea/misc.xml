@@ -22,6 +22,8 @@
         <option value="$PROJECT_DIR$/redisuse/pom.xml" />
         <option value="$PROJECT_DIR$/testsocket/pom.xml" />
         <option value="$PROJECT_DIR$/lsxatomikos/pom.xml" />
+        <option value="$PROJECT_DIR$/mydruid/pom.xml" />
+        <option value="$PROJECT_DIR$/myoauth2/pom.xml" />
       </list>
     </option>
   </component>
